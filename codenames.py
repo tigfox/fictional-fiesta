@@ -1,18 +1,25 @@
 #!/usr/bin/env python
 
-import string
 import random
+import nltk
 
 file = open('textfile', 'r')
-text = file.read().upper()
+text = file.read()
 file.close
 
-file = open('1kMostCommonWords', 'r')
-commons = set([file.read().upper()])
-file.close
+sentences = nltk.sent_tokenize(text)
+nouns = []
+adjectives = []
 
-wordset = set([word.strip(string.punctuation) for word in text.split()])
+for sentence in sentences:
+    for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
+        if (pos == 'NN' or pos == 'NNS'):
+            nouns.append(word)
+        if (pos == 'JJ'):
+            adjectives.append(word)
 
-wordset-commons
+nounset = set(nouns)
+adjset = set(adjectives)
 
-print(random.sample(wordset, 2))
+print("%s %s" % (str(random.sample(adjset, 1)[0]).upper(), str(random.sample(nounset, 1)[0]).upper()))
+

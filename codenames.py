@@ -21,5 +21,5 @@ for sentence in sentences:
 nounset = set(nouns)
 adjset = set(adjectives)
 
-print("%s %s" % (str(random.sample(adjset, 1)[0]).upper(), str(random.sample(nounset, 1)[0]).upper()))
+print("%s %s" % (str(random.sample(list(adjset), 1)[0]).upper(), str(random.sample(list(nounset), 1)[0]).upper()))
 
